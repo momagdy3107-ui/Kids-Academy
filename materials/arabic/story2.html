@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قصة وردة والدببة الثلاثة</title>
+    <!-- استدعاء خط أطفال واضح وجميل -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #f8f9fa;
+        }
+
+        .story-container {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            margin-bottom: 25px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* عنوان القصة يفضل في سطر واحد وبحجم نسبي ذكي حسب الشاشة */
+        .story-container h1 {
+            color: #2d3436;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: clamp(1.1rem, 3.5vw, 2.2rem);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .paragraph-block {
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        /* تحكم في حجم الصورة بالنسبة المئوية وتجاوبها التلقائي */
+        .story-img {
+            width: 70%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 15px;
+            margin: 0 auto 20px auto;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* مسافات طبيعية ومضبوطة بين الكلمات بالملي */
+        .story-text {
+            font-size: 1.5rem;
+            line-height: 2.3;
+            color: #2d3436;
+            user-select: none;
+            text-align: justify;
+            text-align-last: center;
+        }
+
+        .word {
+            display: inline-block;
+            padding: 1px 3px;
+            margin: 2px 2px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .word:hover {
+            background: #ffeaa7;
+        }
+
+        /* الهايلايت للضغطة العادية أو عند الرجوع */
+        .word.highlight {
+            background: #fdcb6e;
+            color: #d63031;
+            font-weight: bold;
+            transform: scale(1.08);
+        }
+
+        .back-btn {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Cairo', sans-serif;
+            box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3);
+            display: block;
+            margin: 0 auto;
+        }
+        .back-btn:hover {
+            background: #5b4cc4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="story-container">
+            <h1>🐻 قصة وردة والدببة الثلاثة 🌸</h1>
+
+            <!-- الفقرة الأولى وصورتها -->
+            <div class="paragraph-block">
+                <img src="images/story1-1.png" alt="صورة الفقرة الأولى" class="story-img" onerror="this.src='https://via.placeholder.com/500x300?text=صورة+الفقرة+الأولى'">
+                
+                <p class="story-text" data-paragraph-id="1">
+                    في إحدى الغابات الجميلة كانت تعيش أسرة من الدببة في بيت خشبيّ كان يقع في وسط الغابة، وكانت أسرة الدببة تتألف من ثلاثة أفراد هم الدب الكبير وهو الأب والدبة الوسطى وهي الأم والدب الصغير وهو الابن، وفي يوم من الأيام خرجت الدببة الثلاثة للبحث عن الطعام في الصباح الباكر، فقد كان الجوّ مناسبًا للخروج في ذلك الوقت، وقبل الخروج أعدَّت الأم الحقائب وكل ما سيحتاجون اليه خلال تلك الرحلة.
+                </p>
+            </div>
+        </div>
+
+        <button class="back-btn" onclick="goBackToArabic()">⬅ العودة لقائمة القصص</button>
+    </div>
+
+    <!-- محرك التشغيل الذكي الموحد للقصة -->
+    <script>
+        // إلغاء تحكم المتصفح التلقائي في السكرول عند الـ Refresh لمنع التعارض
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const paragraphs = document.querySelectorAll('.story-text');
+
+            paragraphs.forEach((pElement, pIndex) => {
+                const rawText = pElement.innerText.trim();
+                pElement.innerHTML = ''; 
+
+                const wordsArray = rawText.split(/\s+/);
+
+                wordsArray.forEach((wordText, wIndex) => {
+                    const span = document.createElement('span');
+                    span.className = 'word';
+                    const globalWordId = `p${pIndex}-w${wIndex}`;
+                    span.id = globalWordId;
+                    span.innerText = wordText;
+
+                    setupWordEvents(span, wordText, globalWordId);
+
+                    pElement.appendChild(span);
+                });
+            });
+
+            // استعادة الـ Scroll والهايلايت بدقة فور اكتمال تحميل الصفحة
+            restoreHighlightAndScroll();
+        });
+
+        function setupWordEvents(element, wordText, globalWordId) {
+            let pressTimer = null;
+            let isLongPress = false;
+
+            const startPress = () => {
+                isLongPress = false;
+                pressTimer = setTimeout(() => {
+                    isLongPress = true;
+                    applyHighlight(globalWordId);
+                    openLettersPage(wordText, globalWordId);
+                }, 600); 
+            };
+
+            const cancelPress = () => {
+                clearTimeout(pressTimer);
+            };
+
+            const endPress = () => {
+                clearTimeout(pressTimer);
+                if (!isLongPress) {
+                    applyHighlight(globalWordId);
+                }
+            };
+
+            element.addEventListener('mousedown', startPress);
+            element.addEventListener('mouseup', endPress);
+            element.addEventListener('mouseleave', cancelPress);
+
+            element.addEventListener('touchstart', startPress, {passive: true});
+            element.addEventListener('touchend', endPress);
+            element.addEventListener('touchmove', cancelPress, {passive: true});
+        }
+
+        function applyHighlight(globalWordId) {
+            document.querySelectorAll('.word').forEach(el => el.classList.remove('highlight'));
+            const wordEl = document.getElementById(globalWordId);
+            if (wordEl) {
+                wordEl.classList.add('highlight');
+                sessionStorage.setItem('activeWordId', globalWordId);
+            }
+        }
+
+        function openLettersPage(wordText, globalWordId) {
+            sessionStorage.setItem('selectedWord', wordText);
+            sessionStorage.setItem('activeWordId', globalWordId);
+            window.location.href = 'letters.html';
+        }
+
+        function restoreHighlightAndScroll() {
+            const savedWordId = sessionStorage.getItem('activeWordId');
+            if (savedWordId !== null) {
+                setTimeout(() => {
+                    const wordEl = document.getElementById(savedWordId);
+                    if (wordEl) {
+                        wordEl.classList.add('highlight');
+                        wordEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 100);
+            }
+        }
+
+        function goBackToArabic() {
+            sessionStorage.removeItem('activeWordId');
+            window.location.href = 'arabic.html';
+        }
+    </script>
+</body>
+</html>

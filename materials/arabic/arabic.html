@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قسم اللغة العربية - القصص والحكايات</title>
+    <!-- استدعاء خط أطفال واضح وجميل -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="icon" type="image/ico" href="../../images/favicon.ico">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            margin: auto;
+        }
+
+        /* العنوان الرئيسي استريتش وفي سطر واحد وبحجم نسبي ذكي */
+        .arabic-title {
+            color: #2d3436;
+            margin-bottom: 10px;
+            font-size: clamp(1rem, 3.2vw, 2.2rem);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .subtitle {
+            color: #ffffff; /* لون أبيض زي ما طلبت */
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        /* شبكة كروت مربعة ومتناسقة زي كروت المواد بالضبط */
+        .subjects-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card.arabic {
+            background: #ffffff;
+            border-radius: 20px;
+            width: 210px;
+            height: 210px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card.arabic:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .card .icon {
+            font-size: 3rem;
+            margin-bottom: 12px;
+        }
+
+        /* اسم القصة جوه الكارت في سطر واحد، بولد، وبحجم مناسب جداً في الشاشات الصغيرة */
+        .card h2 {
+            color: #2d3436;
+            font-size: clamp(0.75rem, 2.1vw, 1.05rem); /* رفعنا الحجم الأدنى عشان ما يصغرش أوي */
+            font-weight: 700; /* خط بولد وبارز وشيك */
+            white-space: nowrap;
+            width: 100%;
+            margin: 0;
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            border: none;
+            background: #ffffff;
+            color: #2d3436;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Cairo', sans-serif;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-btn:hover {
+            background: #f1f2f6;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="arabic-title">📚 حكايات وقصص اللغة العربية 📚</h1>
+        <p class="subtitle">اختر قصة عشان نبدأ المغامرة</p>
+        
+        <div class="subjects-grid">
+            <div class="card arabic" onclick="openStory(1)">
+                <span class="icon">📚</span>
+                <h2>قصة النمله الكريمه</h2>
+            </div>
+
+            <div class="card arabic" onclick="openStory(2)">
+                <span class="icon">📚</span>
+                <h2>قصة وردة والدببة الثلاثة</h2>
+            </div>
+            
+            <!-- لما تحب تضيف قصة تانية تقدر تكرر الكارت هنا بكل سهولة -->
+        </div>
+
+        <div>
+            <button class="back-btn" onclick="goBackToMain()">⬅ العودة للرئيسية</button>
+        </div>
+    </div>
+
+    <script>
+        function openStory(storyId) {
+            window.location.href = 'story' + storyId + '.html';
+        }
+
+        function goBackToMain() {
+            window.location.href = '../../index.html';
+        }
+    </script>
+</body>
+</html>

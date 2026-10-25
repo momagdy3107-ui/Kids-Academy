@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قصة النمله الكريمه</title>
+    <!-- استدعاء خط أطفال واضح وجميل -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="icon" type="image/ico" href="../../images/favicon.ico">
+    <style>
+        *, body, button, h1, h2, p, span, .story-text, .word {
+            font-family: Segoe UI, sans-serif !important; /* نوع الخط */
+            font-size: 1.4rem;                        /* حجم الخط الأساسي */
+            font-weight: bold;                        /* تخانة الخط (بولد) */
+            line-height: 1.7;                         /* المسافة بين السطور (ارتفاع السطر) */
+            letter-spacing: 0.5px;                    /* المسافة الأفقية بين الحروف */
+            word-spacing: 0px;                        /* المسافة بين الكلمات وبعضها */
+        }
+
+        body {
+            background: #f8f9fa;
+        }
+
+        .story-container {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            margin-bottom: 25px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* عنوان القصة يفضل في سطر واحد وبحجم نسبي ذكي حسب الشاشة */
+        .story-container h1 {
+            color: #2d3436;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: clamp(1.1rem, 3.5vw, 2.2rem);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .paragraph-block {
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        /* تحكم في حجم الصورة بالنسبة المئوية وتجاوبها التلقائي */
+        .story-img {
+            width: 70%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 15px;
+            margin: 0 auto 20px auto;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* مسافات طبيعية ومضبوطة بين الكلمات بالملي */
+        .story-text {
+            font-size: 2rem;                       /* حجم الخط الكبير اللي طلبته */
+            line-height: 2.5;                      /* مسافة واسعة ومريحة بين السطور */
+            color: #2d3436;
+            user-select: none;
+            font-weight: bold;
+            
+            /* التكات الجديدة للسنترة المظبوطة بالحرف */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;               /* سنترة الكلمات جوه الفقرة بالملي */
+            align-items: center;
+            text-align: center;
+            gap: 1px;                             /* مسافة ثابتة ومتناسقة بين كل كلمة والثانية */
+        }
+
+        .word {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            /* شلنا الهوامش القديمة عشان الـ gap يظبط المسافات بانتظام */
+        }
+
+        .word:hover {
+            background: #ffeaa7;
+        }
+
+        /* الهايلايت للضغطة العادية أو عند الرجوع */
+        .word.highlight {
+            background: #fdcb6e;
+            color: #d63031;
+            font-weight: bold;
+            transform: scale(1.08);
+        }
+
+        .back-btn {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Cairo', sans-serif;
+            box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3);
+            display: block;
+            margin: 0 auto;
+        }
+        .back-btn:hover {
+            background: #5b4cc4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="story-container">
+
+            <h1>📚 قصة النمله الكريمه 📚</h1>
+
+            <!-- الفقرة الأولى وصورتها -->
+            <div class="paragraph-block">
+                <img src="images/story1-1.webp" alt="صورة الفقرة الأولى" class="story-img" onerror="this.src='https://via.placeholder.com/500x300?text=صورة+الفقرة+الأولى'">
+                
+                <p class="story-text" data-paragraph-id="1">
+كان هناك بعض الأطفال من النمل يلعبون خارج جحر النمل , و فجأه ظهرت سحابه ممطره و بدأ المطر يتساقت , فقالت الأم النمله لأبنائها هيا إلى الداخل يا أبنائي فإن المطر شديد في الخارج و الهواء شديد البروده
+                </p>
+            </div>
+
+            <!-- الفقرة الثانيه وصورتها -->
+            <div class="paragraph-block">
+                <img src="images/story1-2.webp" alt="صورة الفقرة الأولى" class="story-img" onerror="this.src='https://via.placeholder.com/500x300?text=صورة+الفقرة+الأولى'">
+                
+                <p class="story-text" data-paragraph-id="1">
+فصاح أحد الأولاد النجده النجده أكاد أغرق من كثرة الماء , فقالت الأم إحذروا يا أبنائي حتى لا يجرفكم الماء و تشبثوا في الجدران بقوه ... اااه النجده
+                </p>
+            </div>
+
+            <!-- الفقرة الثالثه وصورتها -->
+            <div class="paragraph-block">
+                <img src="images/story1-3.webp" alt="صورة الفقرة الأولى" class="story-img" onerror="this.src='https://via.placeholder.com/500x300?text=صورة+الفقرة+الأولى'">
+                
+                <p class="story-text" data-paragraph-id="1">
+و قالت الأم يا إلهي لقد جرف الماء كل ما كان لدينا من الحبوب و لم يبقى لنا أي شيء , قالت النمله الصغيره إنني جائعه يا أمي أين الطعام و قال أخيها أنا أيضاً جائع و أريد الطعام , فقالت الأم سأخرج لأبحث لكم عن طعام , و حاولت النمله الأم الخروج لكن المطر كان كثير جدا , فقالت يا إلهي لا يمكنني العثور على أي طعام في هذا الجو سأعود إلى الجحر , و عندما يهدأ المطر سوف أخرج من جديد للبحث إن شاء الله
+                </p>
+            </div>
+
+            <!-- الفقرة الرابعه وصورتها -->
+            <div class="paragraph-block">
+                <img src="images/story1-4.webp" alt="صورة الفقرة الأولى" class="story-img" onerror="this.src='https://via.placeholder.com/500x300?text=صورة+الفقرة+الأولى'">
+                
+                <p class="story-text" data-paragraph-id="1">
+و رجعت الأم و سألها أحد صغارها هل أحضرتي الطعام يا أمي ... أين الطعام يا أمي ؟! فلم توجيب عليهم و ظلت ساكته و تقول في نفسها أولادي جائعون و ليس لدينا أي طعام ، ماذا أفعل يا ربي ماذا أفعل
+                </p>
+            </div>
+
+            <!-- الفقرة الخامسه وصورتها -->
+            <div class="paragraph-block">
+                <img src="images/story1-5.webp" alt="صورة الفقرة الأولى" class="story-img" onerror="this.src='https://via.placeholder.com/500x300?text=صورة+الفقرة+الأولى'">
+                
+                <p class="story-text" data-paragraph-id="1">
+ثم فجأه إنتبهت و قالت أااها جائتني فكره ممتازه سأذهب إلى جارتنا فربما أجد لديها بعض الطعام لأولادي , لكن لازالت السماء تمطر أرجو أن لا أتسبب في مضايقة جارتنا بحضوري في هذا الوقت , و لكن ماذا أفعل و الصغار ليس لديهم أي طعام
+                </p>
+            </div>
+
+            <!-- الفقرة السادسه وصورتها -->
+            <div class="paragraph-block">
+                <img src="images/story1-6.webp" alt="صورة الفقرة الأولى" class="story-img" onerror="this.src='https://via.placeholder.com/500x300?text=صورة+الفقرة+الأولى'">
+                
+                <p class="story-text" data-paragraph-id="1">
+و طرقت الباب على جارتها و كانت جارتها تكلم صغارها في تلك اللحظه و تقول لهم هذه الحبوب سوف تكفينا لأسبوع أو أكثر حتى يتوقف المطر و تشرق الشمس من جديد , ثم فتحت الجارة الباب فوجدت أمامها النمله الأم ... فسألتها النمله الأم هل أجد لديك بعض الحبوب ياجارتي العزيزه ... أولادي يبكون من الجوع و المطر جرف كل حبوبنا و ليس لدينا أي طعام 
+                </p>
+            </div>
+
+            <!-- الفقرة السابعه وصورتها -->
+            <div class="paragraph-block">
+                <img src="images/story1-7.webp" alt="صورة الفقرة الأولى" class="story-img" onerror="this.src='https://via.placeholder.com/500x300?text=صورة+الفقرة+الأولى'">
+                
+                <p class="story-text" data-paragraph-id="1">
+لكن النمله الأم صدمت من ردها !!! , حيث ردت عليها الجاره قائله ... أنتي تعليمن ياعزيزتي أن الشتاء و المطر منعنا من الخروج للبحث عن الحبوب و الطعام و قد نفذ الطعام و ليس الدينا لكي أي حبوب , حزنت النمله الأم في نفسها من فعل جارتها السيء و بخلها الشديد هذا , لكنها لم تظهر لجارتها أي ضيق , و ذهبت و هي تقول ماذا أفعل الآن !!! يارب ساعدني يارب
+                </p>
+            </div>
+
+            <!-- الفقرة الثامنه وصورتها -->
+            <div class="paragraph-block">
+                <img src="images/story1-8.webp" alt="صورة الفقرة الأولى" class="story-img" onerror="this.src='https://via.placeholder.com/500x300?text=صورة+الفقرة+الأولى'">
+                
+                <p class="story-text" data-paragraph-id="1">
+و عندما رجعت إلى البيت فرح صغارها و قالوا أمي جاءت أمي جاءت ... و لكن أين الطعام يا أمي ؟!!! ردت النمله الأم قائله عذرا يا أبنائي فإنني لن أتمكن من إحضار أي طعام , فظلت النملتين الصغيرتين يقولان لأمهما أنهما جائعتين جدا .. فقالت لهما النمله الأم صبرا يا أبنائي صبرا  في الصباح إن شاء الله سيتوقف المطر و تشرق الشمس و سأبحث لكم حينها عن الطعام , و ظلت تهون عليهما حتى ناموا جميعا و جاء الصباح
+                </p>
+            </div>
+
+            <!-- الفقرة التاسعه وصورتها -->
+            <div class="paragraph-block">
+                <img src="images/story1-9.webp" alt="صورة الفقرة الأولى" class="story-img" onerror="this.src='https://via.placeholder.com/500x300?text=صورة+الفقرة+الأولى'">
+                
+                <p class="story-text" data-paragraph-id="1">
+إستيقظت النمله الأم و فتحت عينيها و قالت الحمدلله الحمد لله لقد انقطع المطر و أشرقت الشمس من جديد الحمدلله و خرجت حتى وجدت الكثير من الحبوب و قالت هذه الحبوب سوف تكفينا لأكثر من أسبوع حتى يتحسن الجو , و اخذت تحمل كل الحبوب إلى البيت , و لكن فجأه وهي تأخذ أخر الحبوب إلى البيت بدأ المطر من جديد , فتركت ما تبقى من حبوب وسارعت عائدة إلى البيت , و إستيقظ الأولاد ووجدوا الطعام وأكلوا وفرحوا جدااا
+                </p>
+            </div>
+
+            <!-- الفقرة العاشره وصورتها -->
+            <div class="paragraph-block">
+                <img src="images/story1-10.webp" alt="صورة الفقرة الأولى" class="story-img" onerror="this.src='https://via.placeholder.com/500x300?text=صورة+الفقرة+الأولى'">
+                
+                <p class="story-text" data-paragraph-id="1">
+أما الجاره البخيله فقد كان المطر دخل إلى جحرها و جرف كل طعامها بسبب خطأ أحد صغارها و بالكاد نجت هيا و أطفالها , و بدأ صغراها يطلبون الطعام من شدة الجوع , ردت عليهم بأنها ستذهب إلى جارتها النمله الأم الطيبه لتسألها إن كانت قد جمعت أي طعام خلال توقف المطر هذا الذي حدث اليوم باكراً , فتأخذ منها بعض الطعام
+                </p>
+            </div>
+
+            <!-- الفقرة الحادية عشر وصورتها -->
+            <div class="paragraph-block">
+                <img src="images/story1-11.webp" alt="صورة الفقرة الأولى" class="story-img" onerror="this.src='https://via.placeholder.com/500x300?text=صورة+الفقرة+الأولى'">
+                
+                <p class="story-text" data-paragraph-id="1">
+و ذهبت بالفعل النمله البخيله و طرقت باب النمله الأم جارتها و قالت لها يا جارتي العزيزه أولادي يبكون من الجوع و ليس عندنا أي حبوب , لقد جرف المطر الحبوب كلها , فقالت لها النمله الأم كيف جرف المطر طعامكم وأنتي قولتي لي حينما إحتجت إليك أنه ليس لديكم أي طعام , فخجلت النمله البخيله و قبل أن ترد فاجئتها النمله الأم بأنها سمعتها قبل أن تطرق الباب عليها و كانت تعلم أن لديهم طعام يكفي و زياده حتى نهاية المطر
+.......
+و رغم ذلك سامحت النمله الأم النمله البخيله على ما فعلت بعد أن رأت عليها الندم , ثم قالت النمله الكريمه الطيبه للنمله البخيله لا تحملي هماً سأقتسم مالدينا من الطعام بيننا و بينكم
+                </p>
+            </div>
+
+            <!-- الفقرة الثانية عشر وصورتها -->
+            <div class="paragraph-block">
+                <img src="images/story1-12.webp" alt="صورة الفقرة الأولى" class="story-img" onerror="this.src='https://via.placeholder.com/500x300?text=صورة+الفقرة+الأولى'">
+                
+                <p class="story-text" data-paragraph-id="1">
+فصعقت النمله البخيله من فعل الجاره الطيبه وقالت في خجل شديد أشكركي أشكركي جدااا
+فقد تعلمت منك اليوم درسا لن أنساه أبداً ... وسأصبح دائما بعد ذلك أتعامل مع الجميع بكرم
+                </p>
+            </div>
+
+        </div>
+
+        <button class="back-btn" onclick="goBackToArabic()">⬅ العودة لقائمة القصص</button>
+    </div>
+
+    <!-- محرك التشغيل الذكي الموحد للقصة -->
+    <script>
+        // إلغاء تحكم المتصفح التلقائي في السكرول عند الـ Refresh لمنع التعارض
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const paragraphs = document.querySelectorAll('.story-text');
+
+            paragraphs.forEach((pElement, pIndex) => {
+                const rawText = pElement.innerText.trim();
+                pElement.innerHTML = ''; 
+
+                const wordsArray = rawText.split(/\s+/);
+
+                wordsArray.forEach((wordText, wIndex) => {
+                    const span = document.createElement('span');
+                    span.className = 'word';
+                    const globalWordId = `p${pIndex}-w${wIndex}`;
+                    span.id = globalWordId;
+                    span.innerText = wordText;
+
+                    setupWordEvents(span, wordText, globalWordId);
+
+                    pElement.appendChild(span);
+                });
+            });
+
+            // استعادة الـ Scroll والهايلايت بدقة فور اكتمال تحميل الصفحة
+            restoreHighlightAndScroll();
+        });
+
+        function setupWordEvents(element, wordText, globalWordId) {
+            let pressTimer = null;
+            let isLongPress = false;
+
+            const startPress = () => {
+                isLongPress = false;
+                pressTimer = setTimeout(() => {
+                    isLongPress = true;
+                    applyHighlight(globalWordId);
+                    openLettersPage(wordText, globalWordId);
+                }, 600); 
+            };
+
+            const cancelPress = () => {
+                clearTimeout(pressTimer);
+            };
+
+            const endPress = () => {
+                clearTimeout(pressTimer);
+                if (!isLongPress) {
+                    applyHighlight(globalWordId);
+                }
+            };
+
+            element.addEventListener('mousedown', startPress);
+            element.addEventListener('mouseup', endPress);
+            element.addEventListener('mouseleave', cancelPress);
+
+            element.addEventListener('touchstart', startPress, {passive: true});
+            element.addEventListener('touchend', endPress);
+            element.addEventListener('touchmove', cancelPress, {passive: true});
+        }
+
+        function applyHighlight(globalWordId) {
+            document.querySelectorAll('.word').forEach(el => el.classList.remove('highlight'));
+            const wordEl = document.getElementById(globalWordId);
+            if (wordEl) {
+                wordEl.classList.add('highlight');
+                sessionStorage.setItem('activeWordId', globalWordId);
+            }
+        }
+
+        function openLettersPage(wordText, globalWordId) {
+            sessionStorage.setItem('selectedWord', wordText);
+            sessionStorage.setItem('activeWordId', globalWordId);
+            window.location.href = 'letters.html';
+        }
+
+        function restoreHighlightAndScroll() {
+            const savedWordId = sessionStorage.getItem('activeWordId');
+            if (savedWordId !== null) {
+                setTimeout(() => {
+                    const wordEl = document.getElementById(savedWordId);
+                    if (wordEl) {
+                        wordEl.classList.add('highlight');
+                        wordEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 100);
+            }
+        }
+
+        function goBackToArabic() {
+            sessionStorage.removeItem('activeWordId');
+            window.location.href = 'arabic.html';
+        }
+    </script>
+</body>
+</html>

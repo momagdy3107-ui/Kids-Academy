@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفكيك الكلمة إلى حروف</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="icon" type="image/ico" href="../../images/favicon.ico">
+    <style>
+        *, body, button, h1, h2, p, span, .story-text, .word {
+            font-family: Segoe UI, sans-serif !important; /* نوع الخط */
+            font-size: 1.5rem;                        /* حجم الخط الأساسي */
+            font-weight: bold;                        /* تخانة الخط (بولد) */
+            line-height: 2.0;                         /* المسافة بين السطور (ارتفاع السطر) */
+            letter-spacing: 0.5px;                    /* المسافة الأفقية بين الحروف */
+            word-spacing: 0px;                        /* المسافة بين الكلمات وبعضها */
+        }
+
+        body {
+            background: #f8f9fa;
+        }
+
+        .letters-box {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            text-align: center;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .word-display {
+            font-size: 2.8rem;
+            color: #d63031;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        /* صف واحد دايماً وتصغير نسبي أوتوماتيك من غير أي سكرول بار */
+        .letters-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 8px;
+            margin-bottom: 35px;
+            width: 100%;
+        }
+
+        .letter-card {
+            background: #74b9ff;
+            color: white;
+            flex: 1; /* الكروت تتمدد أو تنكمش بالتساوي عشان تدخل كلها في صف واحد */
+            min-width: 30px; /* أقل عرض مسموح للحرف عشان يفضل واضح */
+            max-width: 65px; /* أقصى عرض للحرف على الشاشات الكبيرة */
+            aspect-ratio: 1 / 1; /* يحافظ على شكل الكارت مربع متناسق */
+            font-size: clamp(1.1rem, 4vw, 2.2rem); /* حجم الخط يصغر ويكبر أوتوماتيك حسب الشاشة */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #0984e3;
+            transition: transform 0.1s, background 0.2s;
+            font-weight: bold;
+        }
+
+        .letter-card:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #0984e3;
+        }
+
+        .letter-card:hover {
+            background: #0984e3;
+        }
+
+        .back-btn {
+            background: #00b894;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Cairo', sans-serif;
+            box-shadow: 0 4px 10px rgba(0,184,148,0.3);
+        }
+        .back-btn:hover {
+            background: #019875;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="letters-box">
+            <h2>✨ تفكيك الكلمة إلى حروف ✨</h2>
+            <div class="word-display" id="targetWord">---</div>
+            <p class="subtitle" style="color: #636e72; margin-bottom: 25px;">اضغط على أي حرف لسماع نطقه</p>
+
+            <div class="letters-grid" id="lettersGrid"></div>
+
+            <button class="back-btn" onclick="goBackToStory()">↩ العودة للقصة</button>
+        </div>
+    </div>
+
+    <audio id="letterAudio"></audio>
+
+    <script>
+        const word = sessionStorage.getItem('selectedWord') || '';
+        document.getElementById('targetWord').innerText = word;
+
+        const grid = document.getElementById('lettersGrid');
+        const audio = document.getElementById('letterAudio');
+
+        const letterNameMap = {
+            'أ': 'alef_uphamza',
+            'إ': 'alef_downhamza',
+            'آ': 'alef_upmad',
+            'ا': 'alef_nohamza',
+            'ى': 'alef_layena',
+            'ب': 'beh',
+            'ت': 'teh',
+            'ث': 'theh',
+            'ج': 'jeem',
+            'ح': 'hah',
+            'خ': 'khah',
+            'د': 'dal',
+            'ذ': 'thal',
+            'ر': 'reh',
+            'ز': 'zain',
+            'س': 'seen',
+            'ش': 'sheen',
+            'ص': 'sad',
+            'ض': 'dad',
+            'ط': 'tah',
+            'ظ': 'zah',
+            'ع': 'ain',
+            'غ': 'ghain',
+            'ف': 'feh',
+            'ق': 'qaf',
+            'ك': 'kaf',
+            'ل': 'lam',
+            'م': 'meem',
+            'ن': 'noon',
+            'ه': 'ha',
+            'و': 'waw',
+            'ي': 'yeh',
+            'ة': 'teh_marbuta',
+            'ء': 'hamza',
+            'ؤ': 'hamza_waw',
+            'ئ': 'hamza_sharta'
+        };
+
+        const rawLetters = word.split('');
+
+        rawLetters.forEach(char => {
+            if (['َ', 'ً', 'ُ', 'ٌ', 'ِ', 'ٍ', 'ْ', 'ّ', '،', '.', '؛', '؟'].includes(char)) return;
+
+            const card = document.createElement('div');
+            card.className = 'letter-card';
+            card.innerText = char;
+            
+            const letterName = letterNameMap[char] || char;
+
+            card.onclick = () => {
+                audio.src = `audio/char_${letterName}.mp3`;
+                audio.play().catch(() => {
+                    console.log(`صوت الحرف "${char}" (audio/char_${letterName}.mp3) غير موجود حالياً.`);
+                });
+            };
+
+            grid.appendChild(card);
+        });
+
+        function goBackToStory() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
